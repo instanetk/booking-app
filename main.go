@@ -11,11 +11,7 @@ func main() {
 	var remainingTickets = 50
 	var bookings []string
 
-	fmt.Printf("Welcome to %v booking application\n", conferenceName)
-	fmt.Printf("We have %v tickets and %v are still available\n", conferenceTickets, remainingTickets)
-	fmt.Println("Get your tickets here to attend")
-
-	fmt.Printf("conferenceName is type %T, conferenceTickets is type %T and remainingTickets is type %T.\n", conferenceName, conferenceTickets, remainingTickets)
+	greetUser(conferenceName, conferenceTickets, remainingTickets)
 
 	for {
 		var firstName string
@@ -49,13 +45,8 @@ func main() {
 
 			fmt.Printf("There are %v tickets remaining\n", remainingTickets)
 
-			firstNames := []string{}
-			for _, booking := range bookings {
-				var names = strings.Fields(booking)
-				firstNames = append(firstNames, names[0])
-			}
-
-			fmt.Printf("The first name of bookings are: %v\n", firstNames)
+			// Print first names
+			printFirstNames(bookings)
 
 			if remainingTickets == 0 {
 				// end program
@@ -78,4 +69,20 @@ func main() {
 
 	}
 
+}
+
+func greetUser(confName string, confTickets int, remainingTickets int) {
+	fmt.Printf("Welcome to %v booking application\n", confName)
+	fmt.Printf("We have %v tickets and %v are still available\n", confTickets, remainingTickets)
+	fmt.Println("Get your tickets here to attend")
+}
+
+func printFirstNames(bookings []string) {
+	firstNames := []string{}
+	for _, booking := range bookings {
+		var names = strings.Fields(booking)
+		firstNames = append(firstNames, names[0])
+	}
+
+	fmt.Printf("The first name of bookings are: %v\n", firstNames)
 }
